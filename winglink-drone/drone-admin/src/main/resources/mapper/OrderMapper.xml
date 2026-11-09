@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winglink.mapper.OrderMapper">
+
+    <select id="selectAreaStatistics" resultType="com.winglink.vo.AreaStatisticsVO">
+        SELECT
+            district,
+            COUNT(*) AS orders,
+            SUM(CASE WHEN status = 'DELIVERED' THEN 1 ELSE 0 END) AS completed,
+            SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) AS cancelled,
+            COALESCE(SUM(CASE WHEN status = 'DELIVERED' THEN price ELSE 0 END), 0) AS revenue,
+            COALESCE(AVG(CASE WHEN status = 'DELIVERED' THEN actual_time END), 0) AS avgTime,
+            COALESCE(ROUND(SUM(CASE WHEN status = 'DELIVERED' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2), 0) AS completionRate,
+            COALESCE(ROUND(1000.0 / NULLIF(AVG(CASE WHEN status = 'DELIVERED' THEN actual_time END), 0), 2), 0) AS efficiency
+        FROM delivery_order
+        WHERE deleted = 0 AND district IS NOT NULL AND district != ''
+        GROUP BY district
+        ORDER BY orders DESC
+    </select>
+
+    <select id="selectOverviewStatistics" resultType="java.util.HashMap">
+        SELECT
+            COUNT(*) AS totalOrders,
+            SUM(CASE WHEN status = 'DELIVERED' THEN 1 ELSE 0 END) AS completedOrders,
+            SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) AS cancelledOrders,
+            COALESCE(SUM(CASE WHEN status = 'DELIVERED' THEN price ELSE 0 END), 0) AS totalRevenue,
+            COALESCE(AVG(CASE WHEN status = 'DELIVERED' THEN actual_time END), 0) AS avgDeliveryTime,
+            COALESCE(SUM(CASE WHEN status = 'DELIVERED' OR status = 'DELIVERING' THEN cargo_weight ELSE 0 END), 0) AS totalDistance
+        FROM delivery_order
+        WHERE deleted = 0
+    </select>
+
+    <select id="selectCargoStatistics" resultType="java.util.HashMap">
+        SELECT
+            cargo_type AS cargoType,
+            COUNT(*) AS orderCount
+        FROM delivery_order
+        WHERE deleted = 0 AND cargo_type IS NOT NULL AND cargo_type != ''
+        GROUP BY cargo_type
+        ORDER BY orderCount DESC
+    </select>
+
+    <select id="selectTrendStatistics" resultType="java.util.HashMap">
+        SELECT
+            DATE(create_time) AS statDate,
+            COUNT(*) AS orders,
+            SUM(CASE WHEN status = 'DELIVERED' THEN 1 ELSE 0 END) AS completed,
+            SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) AS cancelled,
+            COALESCE(SUM(CASE WHEN status = 'DELIVERED' THEN price ELSE 0 END), 0) AS revenue
+        FROM delivery_order
+        WHERE deleted = 0
+        <if test="startDate != null and startDate != ''">
+            AND DATE(create_time) &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            AND DATE(create_time) &lt;= #{endDate}
+        </if>
+        GROUP BY DATE(create_time)
+        ORDER BY statDate DESC
+    </select>
+
+</mapper>

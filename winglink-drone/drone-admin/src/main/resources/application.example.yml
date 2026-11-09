@@ -1,0 +1,35 @@
+# Copy to application.yml, then replace the database password and JWT secret.
+server:
+  port: 8080
+
+spring:
+  application:
+    name: drone-admin
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/drone_platform?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: "replace-with-your-local-database-password"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:/mapper/**/*.xml
+
+jwt:
+  secret: "replace-with-at-least-32-random-characters"
+  expiration: 86400000
+
+cors:
+  allowed-origins: http://localhost:3000

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b"/>
+      <stop offset="100%" style="stop-color:#38f9d7"/>
+    </linearGradient>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:0.1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bg4)"/>
+  
+  <!-- 天空效果 -->
+  <rect width="800" height="500" fill="url(#skyGrad)"/>
+  
+  <!-- 装饰云 -->
+  <ellipse cx="150" cy="100" rx="60" ry="25" fill="rgba(255,255,255,0.3)"/>
+  <ellipse cx="180" cy="110" rx="50" ry="20" fill="rgba(255,255,255,0.25)"/>
+  <ellipse cx="650" cy="80" rx="70" ry="30" fill="rgba(255,255,255,0.2)"/>
+  
+  <!-- 地面/建筑剪影 -->
+  <path d="M 0 400 L 100 350 L 150 380 L 200 340 L 280 360 L 350 320 L 450 350 L 550 310 L 650 340 L 750 300 L 800 320 L 800 500 L 0 500 Z" 
+        fill="rgba(255,255,255,0.15)"/>
+  
+  <!-- 主无人机 -->
+  <g transform="translate(400, 220)">
+    <!-- 下方包裹 -->
+    <rect x="-25" y="25" width="50" height="40" rx="6" fill="#8B4513" opacity="0.8"/>
+    <rect x="-25" y="25" width="50" height="40" rx="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+    <line x1="0" y1="5" x2="0" y2="25" stroke="#8B4513" stroke-width="3"/>
+    
+    <!-- 机臂 -->
+    <line x1="-80" y1="0" x2="80" y2="0" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <line x1="0" y1="-40" x2="0" y2="40" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- 螺旋桨 -->
+    <g>
+      <ellipse cx="-80" cy="-5" rx="25" ry="6" fill="rgba(255,255,255,0.7)">
+        <animateTransform attributeName="transform" type="rotate" from="0 -80 -5" to="360 -80 -5" dur="0.1s" repeatCount="indefinite"/>
+      </ellipse>
+      <circle cx="-80" cy="0" r="4" fill="white"/>
+    </g>
+    <g>
+      <ellipse cx="80" cy="-5" rx="25" ry="6" fill="rgba(255,255,255,0.7)">
+        <animateTransform attributeName="transform" type="rotate" from="0 80 -5" to="360 80 -5" dur="0.1s" repeatCount="indefinite"/>
+      </ellipse>
+      <circle cx="80" cy="0" r="4" fill="white"/>
+    </g>
+    <g>
+      <ellipse cx="-5" cy="-45" rx="6" ry="25" fill="rgba(255,255,255,0.7)">
+        <animateTransform attributeName="transform" type="rotate" from="0 -5 -45" to="360 -5 -45" dur="0.1s" repeatCount="indefinite"/>
+      </ellipse>
+      <circle cx="0" cy="-40" r="4" fill="white"/>
+    </g>
+    <g>
+      <ellipse cx="-5" cy="35" rx="6" ry="25" fill="rgba(255,255,255,0.7)">
+        <animateTransform attributeName="transform" type="rotate" from="0 -5 35" to="360 -5 35" dur="0.1s" repeatCount="indefinite"/>
+      </ellipse>
+      <circle cx="0" cy="40" r="4" fill="white"/>
+    </g>
+    
+    <!-- 机身 -->
+    <rect x="-35" y="-15" width="70" height="30" rx="8" fill="white"/>
+    <circle cx="0" cy="0" r="12" fill="#43e97b"/>
+    <circle cx="0" cy="0" r="8" fill="white"/>
+    
+    <!-- 状态指示灯 -->
+    <circle cx="25" cy="-8" r="3" fill="#67c23a">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="-25" cy="-8" r="3" fill="#f56c6c">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- GPS信号波纹 -->
+    <circle cx="0" cy="0" r="100" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2">
+      <animate attributeName="r" values="60;120" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="100" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2">
+      <animate attributeName="r" values="60;120" dur="2s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- 状态信息卡片 -->
+  <rect x="550" y="120" width="180" height="100" rx="12" fill="rgba(255,255,255,0.95)"/>
+  <text x="570" y="155" font-size="14" fill="#909399">当前状态</text>
+  <text x="570" y="185" font-size="20" font-weight="bold" fill="#43e97b">配送中</text>
+  <text x="570" y="205" font-size="13" fill="#606266">预计 12:35 送达</text>
+  
+  <!-- 飞行数据 -->
+  <rect x="80" y="120" width="160" height="80" rx="12" fill="rgba(255,255,255,0.95)"/>
+  <text x="100" y="155" font-size="13" fill="#909399">飞行高度</text>
+  <text x="100" y="180" font-size="18" font-weight="bold" fill="#1a1a2e">80m</text>
+  <text x="170" y="155" font-size="13" fill="#909399">飞行速度</text>
+  <text x="170" y="180" font-size="18" font-weight="bold" fill="#1a1a2e">12m/s</text>
+  
+  <!-- 小装饰 -->
+  <circle cx="700" cy="400" r="40" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="100" cy="350" r="30" fill="rgba(255,255,255,0.08)"/>
+</svg>

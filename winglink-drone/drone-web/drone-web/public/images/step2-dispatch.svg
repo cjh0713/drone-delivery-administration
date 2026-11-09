@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb"/>
+      <stop offset="100%" style="stop-color:#f5576c"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bg2)"/>
+  
+  <!-- 装饰圆 -->
+  <circle cx="80" cy="420" r="100" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="720" cy="80" r="60" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- 中心调度台 -->
+  <circle cx="400" cy="250" r="180" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="400" cy="250" r="140" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  
+  <!-- 中心AI核心 -->
+  <circle cx="400" cy="250" r="60" fill="white"/>
+  <text x="400" y="260" text-anchor="middle" font-size="28" font-weight="bold" fill="#f5576c">AI</text>
+  
+  <!-- 周围无人机节点 -->
+  <!-- 无人机1 -->
+  <g transform="translate(260, 150)">
+    <circle cx="0" cy="0" r="35" fill="white" opacity="0.9"/>
+    <rect x="-15" y="-5" width="30" height="10" rx="2" fill="#f5576c"/>
+    <line x1="-25" y1="0" x2="-15" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <line x1="15" y1="0" x2="25" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <circle cx="-25" cy="0" r="4" fill="#f5576c"/>
+    <circle cx="25" cy="0" r="4" fill="#f5576c"/>
+    <!-- 连接线 -->
+    <line x1="35" y1="15" x2="105" y2="85" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="5,3"/>
+  </g>
+  
+  <!-- 无人机2 -->
+  <g transform="translate(540, 150)">
+    <circle cx="0" cy="0" r="35" fill="white" opacity="0.9"/>
+    <rect x="-15" y="-5" width="30" height="10" rx="2" fill="#f5576c"/>
+    <line x1="-25" y1="0" x2="-15" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <line x1="15" y1="0" x2="25" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <circle cx="-25" cy="0" r="4" fill="#f5576c"/>
+    <circle cx="25" cy="0" r="4" fill="#f5576c"/>
+    <line x1="-35" y1="15" x2="-105" y2="85" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="5,3"/>
+  </g>
+  
+  <!-- 无人机3 -->
+  <g transform="translate(260, 350)">
+    <circle cx="0" cy="0" r="35" fill="white" opacity="0.9"/>
+    <rect x="-15" y="-5" width="30" height="10" rx="2" fill="#f5576c"/>
+    <line x1="-25" y1="0" x2="-15" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <line x1="15" y1="0" x2="25" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <circle cx="-25" cy="0" r="4" fill="#f5576c"/>
+    <circle cx="25" cy="0" r="4" fill="#f5576c"/>
+    <line x1="35" y1="-15" x2="105" y2="-85" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="5,3"/>
+  </g>
+  
+  <!-- 无人机4 -->
+  <g transform="translate(540, 350)">
+    <circle cx="0" cy="0" r="35" fill="white" opacity="0.9"/>
+    <rect x="-15" y="-5" width="30" height="10" rx="2" fill="#f5576c"/>
+    <line x1="-25" y1="0" x2="-15" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <line x1="15" y1="0" x2="25" y2="0" stroke="#f5576c" stroke-width="3"/>
+    <circle cx="-25" cy="0" r="4" fill="#f5576c"/>
+    <circle cx="25" cy="0" r="4" fill="#f5576c"/>
+    <line x1="-35" y1="-15" x2="-105" y2="-85" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="5,3"/>
+  </g>
+  
+  <!-- 数据流动点 -->
+  <circle cx="320" cy="190" r="4" fill="white">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="480" cy="190" r="4" fill="white">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="320" cy="310" r="4" fill="white">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="480" cy="310" r="4" fill="white">
+    <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>
